@@ -1,0 +1,74 @@
+{
+  "baseUrl": "https://www.saucedemo.com",
+  "urls": {
+    "login": "/", 
+    "inventory": "/inventory.html",
+    "cart": "/cart.html",
+    "checkoutStepOne": "/checkout-step-one.html",
+    "checkoutStepTwo": "/checkout-step-two.html",
+    "checkoutComplete": "/checkout-complete.html",
+    "inventoryItem": "/inventory-item.html"
+  },
+  "selectors": {
+    "login": {
+      "username": "[data-test='username']",
+      "password": "[data-test='password']", 
+      "loginButton": "[data-test='login-button']",
+      "errorMessage": "[data-test='error']",
+      "errorButton": "[data-test='error-button']"
+    },
+    "navigation": {
+      "hamburgerMenu": "[data-test='open-menu']",
+      "logoutLink": "[data-test='logout-sidebar-link']",
+      "cartLink": "[data-test='shopping-cart-link']",
+      "cartBadge": "[data-test='shopping-cart-badge']"
+    },
+    "inventory": {
+      "sortDropdown": "[data-test='product-sort-container']",
+      "productContainer": ".inventory_list",
+      "productItem": ".inventory_item",
+      "productName": ".inventory_item_name",
+      "productPrice": ".inventory_item_price"
+    },
+    "cart": {
+      "cartList": "[data-test='cart-list']",
+      "cartItem": "[data-test='cart-item']", 
+      "continueShoppingButton": "[data-test='continue-shopping']",
+      "checkoutButton": "[data-test='checkout']",
+      "cartQuantity": "[data-test='cart-quantity']"
+    },
+    "checkout": {
+      "firstName": "[data-test='firstName']",
+      "lastName": "[data-test='lastName']", 
+      "postalCode": "[data-test='postalCode']",
+      "continueButton": "[data-test='continue']",
+      "cancelButton": "[data-test='cancel']",
+      "finishButton": "[data-test='finish']",
+      "backHomeButton": "[data-test='back-to-products']",
+      "errorMessage": "[data-test='error']"
+    }
+  },
+  "timeouts": {
+    "short": 2000,
+    "medium": 5000,
+    "long": 10000,
+    "navigation": 3000
+  },
+  "expectedTexts": {
+    "pageTitle": "Swag Labs",
+    "inventoryTitle": "Products",
+    "cartTitle": "Your Cart", 
+    "checkoutTitle": "Checkout: Your Information",
+    "overviewTitle": "Checkout: Overview",
+    "completeTitle": "Checkout: Complete!"
+  },
+  "errorMessages": {
+    "usernameRequired": "Epic sadface: Username is required",
+    "passwordRequired": "Epic sadface: Password is required", 
+    "invalidCredentials": "Epic sadface: Username and password do not match any user in this service",
+    "lockedOut": "Epic sadface: Sorry, this user has been locked out.",
+    "firstNameRequired": "Error: First Name is required",
+    "lastNameRequired": "Error: Last Name is required",
+    "postalCodeRequired": "Error: Postal Code is required"
+  }
+}

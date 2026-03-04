@@ -1,0 +1,157 @@
+{
+  "performanceScenarios": {
+    "frontendUI": {
+      "pageLoadTests": {
+        "loginPageLoad": {
+          "name": "Login Page Load Performance",
+          "url": "/",
+          "expectedLoadTime": 2000,
+          "criticalRenderingPath": 1500,
+          "measurements": ["DOMContentLoaded", "FirstContentfulPaint", "LargestContentfulPaint"],
+          "viewport": {"width": 1920, "height": 1080}
+        },
+        "productListingLoad": {
+          "name": "Product Listing Page Load",
+          "url": "/inventory.html",
+          "expectedLoadTime": 3000,
+          "criticalRenderingPath": 1500,
+          "measurements": ["TimeToInteractive", "FirstMeaningfulPaint", "SpeedIndex"],
+          "productCount": 6
+        },
+        "productDetailLoad": {
+          "name": "Individual Product Page Load",
+          "url": "/inventory-item.html?id=4",
+          "expectedLoadTime": 2000,
+          "measurements": ["FirstContentfulPaint", "LargestContentfulPaint"],
+          "imageOptimization": true
+        }
+      },
+      "interactionTests": {
+        "buttonResponse": {
+          "name": "Button Click Response Time",
+          "expectedResponse": 100,
+          "elements": ["login-button", "add-to-cart", "checkout"],
+          "measurementType": "userTiming"
+        },
+        "formInput": {
+          "name": "Form Input Feedback",
+          "expectedResponse": 50,
+          "elements": ["username", "password", "firstName", "lastName"],
+          "validationTiming": true
+        },
+        "navigation": {
+          "name": "Navigation Transitions",
+          "expectedResponse": 300,
+          "routes": ["/", "/inventory.html", "/cart.html", "/checkout-step-one.html"]
+        }
+      }
+    },
+    "backendAPI": {
+      "responseTimeBenchmarks": {
+        "authentication": {
+          "endpoint": "/auth/login",
+          "method": "POST",
+          "expectedResponseTime": 300,
+          "slaTarget": 500,
+          "payload": {"username": "standard_user", "password": "secret_sauce"}
+        },
+        "productListing": {
+          "endpoint": "/products",
+          "method": "GET", 
+          "expectedResponseTime": 500,
+          "slaTarget": 1000,
+          "parameters": ["sortBy", "sortOrder"]
+        },
+        "cartOperations": {
+          "endpoint": "/cart/items",
+          "method": "POST",
+          "expectedResponseTime": 200,
+          "slaTarget": 400,
+          "operations": ["add", "update", "remove"]
+        }
+      },
+      "loadProfiles": {
+        "normalLoad": {
+          "name": "Normal Business Hours Load",
+          "concurrentUsers": 50,
+          "duration": "1h",
+          "rampUp": "5m",
+          "userBehavior": "mixed"
+        },
+        "peakLoad": {
+          "name": "Peak Traffic Load",
+          "concurrentUsers": 100,
+          "duration": "30m",
+          "rampUp": "2m",
+          "userBehavior": "purchase-heavy"
+        },
+        "stressLoad": {
+          "name": "Stress Testing Load",
+          "concurrentUsers": 150,
+          "duration": "15m",
+          "rampUp": "1m",
+          "userBehavior": "aggressive"
+        }
+      }
+    },
+    "database": {
+      "queryBenchmarks": {
+        "userAuth": {
+          "query": "SELECT * FROM users WHERE username = ?",
+          "expectedTime": 50,
+          "maxTime": 100,
+          "indexUsage": true
+        },
+        "productListing": {
+          "query": "SELECT * FROM products WHERE active = true ORDER BY name",
+          "expectedTime": 100,
+          "maxTime": 200,
+          "resultCount": 6
+        },
+        "cartRetrieval": {
+          "query": "SELECT * FROM cart_items WHERE user_id = ?",
+          "expectedTime": 75,
+          "maxTime": 150,
+          "joinComplexity": "medium"
+        }
+      }
+    }
+  },
+  "realWorldScenarios": {
+    "userJourneys": {
+      "quickPurchase": {
+        "name": "Quick Purchase Journey",
+        "steps": ["login", "browse", "addToCart", "checkout", "complete"],
+        "expectedDuration": 120000,
+        "criticalPath": true
+      },
+      "browsingShopping": {
+        "name": "Extended Browsing and Shopping",
+        "steps": ["login", "browse", "search", "compare", "addMultiple", "checkout"],
+        "expectedDuration": 300000,
+        "criticalPath": false
+      }
+    },
+    "trafficPatterns": {
+      "dailyPattern": {
+        "name": "Typical Daily Traffic Pattern",
+        "hours": {
+          "00-06": {"load": 10, "userType": "international"},
+          "06-09": {"load": 30, "userType": "commuter"},
+          "09-12": {"load": 60, "userType": "business"},
+          "12-14": {"load": 80, "userType": "lunch"},
+          "14-17": {"load": 70, "userType": "business"},
+          "17-20": {"load": 100, "userType": "evening"},
+          "20-24": {"load": 40, "userType": "leisure"}
+        }
+      },
+      "flashSale": {
+        "name": "Flash Sale Traffic Spike",
+        "baseLoad": 50,
+        "spikeLoad": 300,
+        "spikeDuration": "15m",
+        "recoveryTime": "30m"
+      }
+    }
+  }
+}

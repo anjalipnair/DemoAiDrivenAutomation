@@ -1,0 +1,112 @@
+{
+  "loginFormElements": {
+    "form": {
+      "selector": "form",
+      "expectedCount": 1,
+      "requiredAttributes": {
+        "role": null,
+        "aria-label": null,
+        "method": "post"
+      }
+    },
+    "usernameField": {
+      "id": "user-name",
+      "selector": "input[type='text']",
+      "expectedAttributes": {
+        "type": "text",
+        "placeholder": "Username",
+        "class": "input_error form_input",
+        "data-test": "username"
+      },
+      "accessibilityRequirements": {
+        "hasLabel": false,
+        "hasAriaLabel": false,
+        "hasPlaceholder": true,
+        "isRequired": false,
+        "isFocusable": true
+      }
+    },
+    "passwordField": {
+      "id": "password", 
+      "selector": "input[type='password']",
+      "expectedAttributes": {
+        "type": "password",
+        "placeholder": "Password",
+        "class": "input_error form_input", 
+        "data-test": "password"
+      },
+      "accessibilityRequirements": {
+        "hasLabel": false,
+        "hasAriaLabel": false,
+        "hasPlaceholder": true,
+        "isRequired": false,
+        "isFocusable": true
+      }
+    },
+    "loginButton": {
+      "id": "login-button",
+      "selector": "input[type='submit']",
+      "expectedAttributes": {
+        "type": "submit",
+        "value": "Login",
+        "class": "submit-button btn_action",
+        "data-test": "login-button"
+      },
+      "accessibilityRequirements": {
+        "hasLabel": false,
+        "hasValue": true,
+        "isFocusable": true,
+        "hasKeyboardAccess": true
+      }
+    }
+  },
+  "focusIndicators": {
+    "expectedStyles": {
+      "outline": {
+        "minWidth": "1px",
+        "style": "solid",
+        "colorContrast": "3:1"
+      },
+      "boxShadow": {
+        "acceptableValues": [
+          "0 0 0 2px",
+          "0 0 5px", 
+          "inset 0 1px 1px rgba(0,0,0,0.075), 0 0 0 3px"
+        ]
+      }
+    },
+    "testInputs": [
+      {"id": "user-name", "type": "text"},
+      {"id": "password", "type": "password"},
+      {"id": "login-button", "type": "submit"}
+    ]
+  },
+  "imageElements": {
+    "expectedImages": [
+      {
+        "selector": ".bot_column img", 
+        "expectedAlt": "",
+        "role": null,
+        "accessibilityNotes": "Decorative image - empty alt acceptable"
+      }
+    ]
+  },
+  "headingStructure": {
+    "expected": {
+      "h1": 0,
+      "h2": 0,
+      "h3": 0,
+      "h4": 0,
+      "h5": 0,
+      "h6": 0
+    },
+    "recommendations": [
+      {
+        "element": "h1",
+        "suggestedText": "SauceDemo Login", 
+        "location": "Above login form",
+        "wcagBenefit": "Provides page context and structure"
+      }
+    ]
+  }
+}

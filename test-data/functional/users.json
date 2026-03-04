@@ -1,0 +1,66 @@
+{
+  "validUsers": {
+    "standard": {
+      "username": "standard_user",
+      "password": "secret_sauce",
+      "description": "Standard user with full access to all features"
+    },
+    "performance": {
+      "username": "performance_glitch_user", 
+      "password": "secret_sauce",
+      "description": "User with performance issues for load testing"
+    },
+    "problem": {
+      "username": "problem_user",
+      "password": "secret_sauce", 
+      "description": "User with broken functionality for error testing"
+    },
+    "error": {
+      "username": "error_user",
+      "password": "secret_sauce",
+      "description": "User that encounters errors in workflows"
+    },
+    "visual": {
+      "username": "visual_user", 
+      "password": "secret_sauce",
+      "description": "User for visual regression testing"
+    }
+  },
+  "invalidUsers": {
+    "locked": {
+      "username": "locked_out_user",
+      "password": "secret_sauce",
+      "description": "Locked out user account",
+      "expectedError": "Sorry, this user has been locked out."
+    },
+    "invalid": {
+      "username": "invalid_user",
+      "password": "secret_sauce", 
+      "description": "Non-existent user account",
+      "expectedError": "Username and password do not match any user in this service"
+    },
+    "wrongPassword": {
+      "username": "standard_user",
+      "password": "wrong_password",
+      "description": "Valid user with incorrect password", 
+      "expectedError": "Username and password do not match any user in this service"
+    }
+  },
+  "emptyFields": {
+    "noUsername": {
+      "username": "",
+      "password": "secret_sauce",
+      "expectedError": "Username is required"
+    },
+    "noPassword": {
+      "username": "standard_user", 
+      "password": "",
+      "expectedError": "Password is required"
+    },
+    "bothEmpty": {
+      "username": "",
+      "password": "",
+      "expectedError": "Username is required"
+    }
+  }
+}

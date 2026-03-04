@@ -1,0 +1,134 @@
+{
+  "loadProfiles": {
+    "userTypes": {
+      "browser": {
+        "name": "Product Browser",
+        "behavior": {
+          "login": 0.8,
+          "browse": 1.0,
+          "search": 0.6,
+          "viewProduct": 0.9,
+          "addToCart": 0.3,
+          "checkout": 0.1
+        },
+        "thinkTime": {"min": 3, "max": 15},
+        "sessionDuration": {"min": 300, "max": 1800}
+      },
+      "buyer": {
+        "name": "Focused Buyer",
+        "behavior": {
+          "login": 1.0,
+          "browse": 0.7,
+          "search": 0.4,
+          "viewProduct": 0.8,
+          "addToCart": 0.9,
+          "checkout": 0.8
+        },
+        "thinkTime": {"min": 1, "max": 8},
+        "sessionDuration": {"min": 120, "max": 600}
+      },
+      "returningCustomer": {
+        "name": "Returning Customer",
+        "behavior": {
+          "login": 1.0,
+          "browse": 0.5,
+          "search": 0.7,
+          "viewProduct": 0.6,
+          "addToCart": 0.7,
+          "checkout": 0.6
+        },
+        "thinkTime": {"min": 2, "max": 10},
+        "sessionDuration": {"min": 180, "max": 900},
+        "cacheHitRate": 0.7
+      }
+    },
+    "loadPatterns": {
+      "rampUp": {
+        "name": "Gradual Ramp-Up Pattern",
+        "phases": [
+          {"duration": "2m", "users": 10, "action": "ramp-up"},
+          {"duration": "5m", "users": 25, "action": "ramp-up"},
+          {"duration": "10m", "users": 50, "action": "sustain"},
+          {"duration": "5m", "users": 25, "action": "ramp-down"},
+          {"duration": "2m", "users": 0, "action": "ramp-down"}
+        ]
+      },
+      "steadyState": {
+        "name": "Steady State Load",
+        "duration": "1h",
+        "users": 50,
+        "distribution": "even"
+      },
+      "spike": {
+        "name": "Traffic Spike Pattern",
+        "phases": [
+          {"duration": "5m", "users": 20, "action": "baseline"},
+          {"duration": "1m", "users": 100, "action": "spike"},
+          {"duration": "10m", "users": 100, "action": "sustain"},
+          {"duration": "5m", "users": 20, "action": "recovery"}
+        ]
+      }
+    },
+    "concurrencyLevels": {
+      "light": {
+        "users": 10,
+        "description": "Light load for smoke testing",
+        "expectedResponse": "optimal"
+      },
+      "normal": {
+        "users": 50,
+        "description": "Normal business load",
+        "expectedResponse": "good"
+      },
+      "heavy": {
+        "users": 100,
+        "description": "Peak business load",
+        "expectedResponse": "acceptable"
+      },
+      "stress": {
+        "users": 150,
+        "description": "Stress testing load",
+        "expectedResponse": "degraded"
+      },
+      "breakpoint": {
+        "users": 200,
+        "description": "System breaking point",
+        "expectedResponse": "failure"
+      }
+    }
+  },
+  "deviceProfiles": {
+    "desktop": {
+      "name": "Desktop Computer",
+      "viewport": {"width": 1920, "height": 1080},
+      "cpu": "high",
+      "memory": "high",
+      "network": "fast",
+      "expectedPerformance": "optimal"
+    },
+    "tablet": {
+      "name": "Tablet Device",
+      "viewport": {"width": 768, "height": 1024},
+      "cpu": "medium",
+      "memory": "medium", 
+      "network": "medium",
+      "expectedPerformance": "good"
+    },
+    "mobile": {
+      "name": "Mobile Phone",
+      "viewport": {"width": 375, "height": 667},
+      "cpu": "low",
+      "memory": "low",
+      "network": "slow",
+      "expectedPerformance": "acceptable"
+    },
+    "lowEndMobile": {
+      "name": "Low-End Mobile Device",
+      "viewport": {"width": 320, "height": 568},
+      "cpu": "very-low",
+      "memory": "very-low",
+      "network": "very-slow",
+      "expectedPerformance": "minimal"
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "accessibilityTestData": {
+    "baseUrl": "https://www.saucedemo.com",
+    "testConfiguration": {
+      "axeOptions": {
+        "rules": {
+          "color-contrast": { "enabled": true },
+          "keyboard": { "enabled": true },
+          "focus-order-semantics": { "enabled": true },
+          "landmark-one-main": { "enabled": false },
+          "page-has-heading-one": { "enabled": false },
+          "html-has-lang": { "enabled": true }
+        },
+        "tags": ["wcag2a", "wcag2aa"],
+        "exclude": [
+          [".login_logo"]
+        ]
+      },
+      "timeouts": {
+        "pageLoad": 10000,
+        "elementInteraction": 5000,
+        "axeScan": 15000
+      },
+      "retryAttempts": {
+        "elementFocus": 3,
+        "axeScan": 2,
+        "navigation": 3
+      }
+    },
+    "reportingConfig": {
+      "generateDetailedReport": true,
+      "includeScreenshots": true,
+      "saveViolationsToFile": true,
+      "outputFormats": ["json", "html", "csv"],
+      "severityLevels": {
+        "critical": {
+          "color": "#d32f2f",
+          "failTest": true,
+          "priority": 1
+        },
+        "serious": {
+          "color": "#f57400", 
+          "failTest": true,
+          "priority": 2
+        },
+        "moderate": {
+          "color": "#ffb300",
+          "failTest": false,
+          "priority": 3
+        },
+        "minor": {
+          "color": "#388e3c",
+          "failTest": false,
+          "priority": 4
+        }
+      }
+    },
+    "validationRules": {
+      "maxAllowedViolations": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 5,
+        "minor": 10
+      },
+      "requiredElements": {
+        "form": 1,
+        "inputs": 3,
+        "buttons": 1
+      },
+      "focusRequirements": {
+        "allElementsMustBeFocusable": true,
+        "focusIndicatorRequired": true,
+        "logicalTabOrder": true
+      }
+    },
+    "knownIssues": {
+      "expectedViolations": [
+        {
+          "ruleId": "landmark-one-main",
+          "reason": "SauceDemo does not use semantic landmarks",
+          "severity": "moderate",
+          "documentedOn": "2026-03-03"
+        },
+        {
+          "ruleId": "page-has-heading-one", 
+          "reason": "SauceDemo login page lacks h1 heading",
+          "severity": "moderate",
+          "documentedOn": "2026-03-03"
+        }
+      ]
+    }
+  }
+}

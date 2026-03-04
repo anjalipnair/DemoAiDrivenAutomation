@@ -1,0 +1,133 @@
+{
+  "slaTargets": {
+    "responseTime": {
+      "login": {
+        "target": 300,
+        "threshold": 500,
+        "critical": 1000,
+        "unit": "ms"
+      },
+      "productListing": {
+        "target": 500,
+        "threshold": 1000,
+        "critical": 2000,
+        "unit": "ms"
+      },
+      "cartOperations": {
+        "target": 200,
+        "threshold": 400,
+        "critical": 800,
+        "unit": "ms"
+      },
+      "checkout": {
+        "target": 400,
+        "threshold": 800,
+        "critical": 1500,
+        "unit": "ms"
+      }
+    },
+    "throughput": {
+      "requestsPerSecond": {
+        "target": 100,
+        "minimum": 50,
+        "peak": 200
+      },
+      "concurrentUsers": {
+        "target": 100,
+        "minimum": 50,
+        "maximum": 150
+      }
+    },
+    "availability": {
+      "uptime": 99.9,
+      "errorRate": {
+        "target": 0.1,
+        "threshold": 1.0,
+        "critical": 5.0,
+        "unit": "percentage"
+      }
+    }
+  },
+  "coreWebVitals": {
+    "largestContentfulPaint": {
+      "good": 2500,
+      "needsImprovement": 4000,
+      "poor": 4001,
+      "unit": "ms"
+    },
+    "firstInputDelay": {
+      "good": 100,
+      "needsImprovement": 300,
+      "poor": 301,
+      "unit": "ms"
+    },
+    "cumulativeLayoutShift": {
+      "good": 0.1,
+      "needsImprovement": 0.25,
+      "poor": 0.251,
+      "unit": "score"
+    },
+    "firstContentfulPaint": {
+      "good": 1800,
+      "needsImprovement": 3000,
+      "poor": 3001,
+      "unit": "ms"
+    }
+  },
+  "resourceUtilization": {
+    "cpu": {
+      "normal": 70,
+      "warning": 85,
+      "critical": 95,
+      "unit": "percentage"
+    },
+    "memory": {
+      "normal": 80,
+      "warning": 90,
+      "critical": 95,
+      "unit": "percentage"
+    },
+    "diskIO": {
+      "normal": 70,
+      "warning": 85,
+      "critical": 95,
+      "unit": "percentage"
+    },
+    "networkBandwidth": {
+      "normal": 70,
+      "warning": 85,
+      "critical": 90,
+      "unit": "percentage"
+    }
+  },
+  "networkConditions": {
+    "fastWifi": {
+      "downloadSpeed": 50000,
+      "uploadSpeed": 10000,
+      "latency": 20,
+      "jitter": 5,
+      "packetLoss": 0
+    },
+    "slowWifi": {
+      "downloadSpeed": 5000,
+      "uploadSpeed": 1000,
+      "latency": 100,
+      "jitter": 20,
+      "packetLoss": 1
+    },
+    "fast3G": {
+      "downloadSpeed": 1600,
+      "uploadSpeed": 750,
+      "latency": 150,
+      "jitter": 30,
+      "packetLoss": 2
+    },
+    "slow3G": {
+      "downloadSpeed": 400,
+      "uploadSpeed": 400,
+      "latency": 400,
+      "jitter": 50,
+      "packetLoss": 3
+    }
+  }
+}

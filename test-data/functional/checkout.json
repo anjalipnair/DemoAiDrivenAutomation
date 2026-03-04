@@ -1,0 +1,79 @@
+{
+  "validCustomers": {
+    "customer1": {
+      "firstName": "John",
+      "lastName": "Doe", 
+      "zipCode": "12345",
+      "description": "Standard valid customer information"
+    },
+    "customer2": {
+      "firstName": "Jane",
+      "lastName": "Smith",
+      "zipCode": "67890",
+      "description": "Alternative valid customer for data variety"
+    },
+    "customer3": {
+      "firstName": "Michael",
+      "lastName": "Johnson", 
+      "zipCode": "54321",
+      "description": "Third valid customer for multiple test runs"
+    }
+  },
+  "invalidCustomers": {
+    "noFirstName": {
+      "firstName": "",
+      "lastName": "Doe",
+      "zipCode": "12345",
+      "expectedError": "Error: First Name is required"
+    },
+    "noLastName": {
+      "firstName": "John", 
+      "lastName": "",
+      "zipCode": "12345",
+      "expectedError": "Error: Last Name is required"
+    },
+    "noZipCode": {
+      "firstName": "John",
+      "lastName": "Doe",
+      "zipCode": "",
+      "expectedError": "Error: Postal Code is required"
+    },
+    "allEmpty": {
+      "firstName": "",
+      "lastName": "", 
+      "zipCode": "",
+      "expectedError": "Error: First Name is required"
+    }
+  },
+  "paymentInfo": {
+    "default": {
+      "cardNumber": "SauceCard #31337",
+      "cardType": "SauceCard",
+      "description": "Default payment method for all transactions"
+    }
+  },
+  "shippingInfo": {
+    "default": {
+      "method": "Free Pony Express Delivery",
+      "description": "Standard shipping method for all orders"
+    }
+  },
+  "taxInfo": {
+    "standardRate": {
+      "rate": 0.08,
+      "description": "Standard tax rate of 8% applied to all orders"
+    }
+  },
+  "checkoutUrls": {
+    "stepOne": "/checkout-step-one.html",
+    "stepTwo": "/checkout-step-two.html", 
+    "complete": "/checkout-complete.html"
+  },
+  "messages": {
+    "orderComplete": {
+      "header": "Thank you for your order!",
+      "description": "Your order has been dispatched, and will arrive just as fast as the pony can get there!",
+      "dispatchMessage": "Your order has been dispatched"
+    }
+  }
+}

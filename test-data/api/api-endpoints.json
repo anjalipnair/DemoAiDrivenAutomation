@@ -1,0 +1,255 @@
+{
+  "baseUrl": "https://www.saucedemo.com/api/v1",
+  "endpoints": {
+    "authentication": {
+      "login": {
+        "method": "POST",
+        "path": "/auth/login",
+        "description": "Authenticate user and return session token",
+        "headers": {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        "requestBody": {
+          "username": "string",
+          "password": "string"
+        },
+        "responses": {
+          "200": {
+            "description": "Login successful",
+            "schema": {
+              "sessionToken": "string",
+              "user": {
+                "id": "string",
+                "username": "string",
+                "userType": "string"
+              },
+              "expiresIn": "number"
+            }
+          },
+          "401": {
+            "description": "Invalid credentials",
+            "schema": {
+              "error": "string",
+              "message": "string"
+            }
+          }
+        }
+      },
+      "logout": {
+        "method": "POST", 
+        "path": "/auth/logout",
+        "description": "Invalidate user session",
+        "headers": {
+          "Authorization": "Bearer {sessionToken}",
+          "Content-Type": "application/json"
+        }
+      },
+      "validateSession": {
+        "method": "GET",
+        "path": "/auth/validate",
+        "description": "Check if session token is valid",
+        "headers": {
+          "Authorization": "Bearer {sessionToken}"
+        }
+      }
+    },
+    "inventory": {
+      "getProducts": {
+        "method": "GET",
+        "path": "/products",
+        "description": "Get all available products",
+        "queryParams": {
+          "sortBy": "name|price",
+          "sortOrder": "asc|desc",
+          "limit": "number",
+          "offset": "number"
+        },
+        "responses": {
+          "200": {
+            "description": "Products retrieved successfully",
+            "schema": {
+              "products": [{
+                "id": "string",
+                "name": "string", 
+                "description": "string",
+                "price": "number",
+                "image": "string",
+                "inventoryCount": "number"
+              }],
+              "totalCount": "number"
+            }
+          }
+        }
+      },
+      "getProduct": {
+        "method": "GET",
+        "path": "/products/{productId}",
+        "description": "Get specific product details",
+        "pathParams": {
+          "productId": "string"
+        }
+      }
+    },
+    "cart": {
+      "getCart": {
+        "method": "GET",
+        "path": "/cart",
+        "description": "Get current user's cart contents",
+        "headers": {
+          "Authorization": "Bearer {sessionToken}"
+        },
+        "responses": {
+          "200": {
+            "description": "Cart contents retrieved",
+            "schema": {
+              "cartId": "string",
+              "items": [{
+                "productId": "string",
+                "name": "string",
+                "price": "number",
+                "quantity": "number",
+                "subtotal": "number"
+              }],
+              "itemCount": "number",
+              "totalAmount": "number"
+            }
+          }
+        }
+      },
+      "addItem": {
+        "method": "POST",
+        "path": "/cart/items",
+        "description": "Add product to cart",
+        "headers": {
+          "Authorization": "Bearer {sessionToken}",
+          "Content-Type": "application/json" 
+        },
+        "requestBody": {
+          "productId": "string",
+          "quantity": "number"
+        }
+      },
+      "updateItem": {
+        "method": "PUT",
+        "path": "/cart/items/{productId}",
+        "description": "Update item quantity in cart",
+        "pathParams": {
+          "productId": "string"
+        },
+        "requestBody": {
+          "quantity": "number"
+        }
+      },
+      "removeItem": {
+        "method": "DELETE",
+        "path": "/cart/items/{productId}",
+        "description": "Remove item from cart",
+        "pathParams": {
+          "productId": "string"
+        }
+      },
+      "clearCart": {
+        "method": "DELETE",
+        "path": "/cart",
+        "description": "Remove all items from cart"
+      }
+    },
+    "checkout": {
+      "submitCustomerInfo": {
+        "method": "POST",
+        "path": "/checkout/customer-info",
+        "description": "Submit customer information for checkout",
+        "headers": {
+          "Authorization": "Bearer {sessionToken}",
+          "Content-Type": "application/json"
+        },
+        "requestBody": {
+          "firstName": "string",
+          "lastName": "string", 
+          "postalCode": "string"
+        }
+      },
+      "getOrderSummary": {
+        "method": "GET",
+        "path": "/checkout/summary",
+        "description": "Get order summary with tax calculations",
+        "headers": {
+          "Authorization": "Bearer {sessionToken}"
+        },
+        "responses": {
+          "200": {
+            "schema": {
+              "items": "array",
+              "subtotal": "number",
+              "tax": "number",
+              "shipping": "number",
+              "total": "number",
+              "paymentInfo": "object",
+              "shippingInfo": "object"
+            }
+          }
+        }
+      },
+      "completeOrder": {
+        "method": "POST",
+        "path": "/checkout/complete",
+        "description": "Complete the order and process payment",
+        "headers": {
+          "Authorization": "Bearer {sessionToken}"
+        },
+        "responses": {
+          "200": {
+            "schema": {
+              "orderId": "string",
+              "status": "string",
+              "confirmationMessage": "string",
+              "trackingInfo": "string"
+            }
+          }
+        }
+      }
+    },
+    "orders": {
+      "getOrderHistory": {
+        "method": "GET", 
+        "path": "/orders",
+        "description": "Get user's order history",
+        "headers": {
+          "Authorization": "Bearer {sessionToken}"
+        }
+      },
+      "getOrder": {
+        "method": "GET",
+        "path": "/orders/{orderId}",
+        "description": "Get specific order details",
+        "pathParams": {
+          "orderId": "string"
+        }
+      }
+    }
+  },
+  "errorCodes": {
+    "AUTH001": "Invalid username or password",
+    "AUTH002": "User account is locked",
+    "AUTH003": "Session token expired",
+    "AUTH004": "Invalid session token", 
+    "CART001": "Product not found",
+    "CART002": "Insufficient inventory",
+    "CART003": "Cart is empty",
+    "CHECKOUT001": "Missing required customer information",
+    "CHECKOUT002": "Invalid postal code format",
+    "CHECKOUT003": "Payment processing failed"
+  },
+  "statusCodes": {
+    "200": "OK - Request successful",
+    "201": "Created - Resource created successfully", 
+    "400": "Bad Request - Invalid request parameters",
+    "401": "Unauthorized - Invalid or missing authentication",
+    "403": "Forbidden - Access denied",
+    "404": "Not Found - Resource not found",
+    "409": "Conflict - Resource already exists",
+    "422": "Unprocessable Entity - Validation failed",
+    "500": "Internal Server Error - Server error occurred"
+  }
+}

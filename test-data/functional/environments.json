@@ -1,0 +1,60 @@
+{
+  "environments": {
+    "development": {
+      "baseUrl": "https://dev.saucedemo.com",
+      "timeout": 10000,
+      "retries": 2,
+      "headless": false,
+      "slowMo": 100
+    },
+    "staging": {
+      "baseUrl": "https://staging.saucedemo.com", 
+      "timeout": 8000,
+      "retries": 1,
+      "headless": true,
+      "slowMo": 50
+    },
+    "production": {
+      "baseUrl": "https://www.saucedemo.com",
+      "timeout": 5000,
+      "retries": 3,
+      "headless": true,
+      "slowMo": 0
+    }
+  },
+  "testDataSets": {
+    "smoke": {
+      "users": ["standard"],
+      "products": ["backpack"],
+      "customers": ["customer1"]
+    },
+    "regression": {
+      "users": ["standard", "performance", "problem"],
+      "products": ["backpack", "bikeLight", "fleeceJacket"],
+      "customers": ["customer1", "customer2"]
+    },
+    "fullSuite": {
+      "users": ["standard", "performance", "problem", "error", "visual"],
+      "products": ["backpack", "bikeLight", "tshirt", "fleeceJacket", "onesie", "boltTshirt"],
+      "customers": ["customer1", "customer2", "customer3"]
+    }
+  },
+  "browserConfigs": {
+    "chrome": {
+      "name": "chromium",
+      "viewport": { "width": 1280, "height": 720 }
+    },
+    "firefox": {
+      "name": "firefox", 
+      "viewport": { "width": 1280, "height": 720 }
+    },
+    "safari": {
+      "name": "webkit",
+      "viewport": { "width": 1280, "height": 720 }
+    },
+    "mobile": {
+      "name": "chromium",
+      "viewport": { "width": 375, "height": 667 }
+    }
+  }
+}

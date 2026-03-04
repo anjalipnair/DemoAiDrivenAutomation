@@ -1,0 +1,70 @@
+version: '3.8'
+
+services:
+  # Main test runner
+  playwright-tests:
+    build: 
+      context: .
+      target: playwright-base
+    environment:
+      - CI=true
+      - BASE_URL=https://www.orangehrm.com
+    volumes:
+      - ./test-results:/app/test-results
+      - ./playwright-report:/app/playwright-report
+    command: npx playwright test --reporter=html,json
+    networks:
+      - test-network
+
+  # Test report server
+  report-server:
+    build:
+      context: .
+      target: report-server
+    ports:
+      - "8080:80"
+    depends_on:
+      - playwright-tests
+    volumes:
+      - ./playwright-report:/usr/share/nginx/html:ro
+    networks:
+      - test-network
+
+  # Scheduled test runner
+  scheduled-tests:
+    build:
+      context: .
+      target: playwright-base
+    environment:
+      - CI=true
+      - BASE_URL=https://www.orangehrm.com
+      - SCHEDULE_CRON=0 6 * * *
+    volumes:
+      - ./test-results:/app/test-results
+      - ./playwright-report:/app/playwright-report
+      - ./scripts:/app/scripts
+    command: /app/scripts/run-scheduled-tests.sh
+    networks:
+      - test-network
+
+  # Database for test results (optional)
+  test-db:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_DB=test_results
+      - POSTGRES_USER=testuser
+      - POSTGRES_PASSWORD=testpass
+    volumes:
+      - test_data:/var/lib/postgresql/data
+      - ./scripts/init-db.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    networks:
+      - test-network
+
+networks:
+  test-network:
+    driver: bridge
+
+volumes:
+  test_data:

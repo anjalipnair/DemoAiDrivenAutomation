@@ -1,0 +1,39 @@
+{
+  "name": "demoaidrivenautomation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:chromium": "playwright test --project=chromium",
+    "test:firefox": "playwright test --project=firefox",
+    "test:webkit": "playwright test --project=webkit",
+    "test:solutions": "playwright test tests/solutions/",
+    "test:api": "playwright test tests/api/",
+    "test:accessibility": "playwright test tests/accessibility/",
+    "test:ci": "playwright test --reporter=html,json",
+    "test:scheduled": "./scripts/run-scheduled-tests.sh",
+    "report:generate": "node scripts/ci-report-processor.js",
+    "report:serve": "npx playwright show-report",
+    "setup:cron": "./scripts/setup-cron.sh",
+    "docker:build": "docker build -t playwright-tests .",
+    "docker:run": "docker-compose up --build",
+    "docker:test": "docker-compose run playwright-tests",
+    "ci:install": "npm ci && npx playwright install --with-deps",
+    "ci:test": "npm run test:ci && npm run report:generate",
+    "dev": "echo 'Development server placeholder'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@axe-core/playwright": "^4.11.1",
+    "@playwright/test": "^1.58.2",
+    "@types/node": "^25.3.0"
+  },
+  "dependencies": {
+    "chalk": "^5.6.2"
+  }
+}

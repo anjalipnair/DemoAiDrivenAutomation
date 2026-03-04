@@ -1,0 +1,146 @@
+{
+  "accessibilityTestScenarios": [
+    {
+      "scenarioId": "AXE-001",
+      "name": "Axe-core Full Page Scan",
+      "description": "Run comprehensive axe-core accessibility scan on login page",
+      "testSteps": [
+        "Navigate to https://www.saucedemo.com",
+        "Wait for page to load completely", 
+        "Run AxeBuilder.analyze()",
+        "Assert no critical violations",
+        "Assert no serious violations"
+      ],
+      "expectedResults": {
+        "criticalViolations": 0,
+        "seriousViolations": 0,
+        "moderateViolations": "<=5",
+        "minorViolations": "<=10"
+      }
+    },
+    {
+      "scenarioId": "KBD-001",
+      "name": "Keyboard Navigation Test",
+      "description": "Verify all interactive elements are keyboard accessible",
+      "testSteps": [
+        "Navigate to login page",
+        "Press Tab key", 
+        "Verify focus moves to username field",
+        "Press Tab key",
+        "Verify focus moves to password field", 
+        "Press Tab key",
+        "Verify focus moves to login button",
+        "Press Enter",
+        "Verify form submission"
+      ],
+      "expectedResults": {
+        "tabOrder": ["user-name", "password", "login-button"],
+        "focusVisible": true,
+        "keyboardAccessible": true
+      }
+    },
+    {
+      "scenarioId": "FOCUS-001", 
+      "name": "Focus Indicator Visibility",
+      "description": "Verify focus indicators are clearly visible",
+      "testSteps": [
+        "Navigate to login page",
+        "Tab through each form element",
+        "Capture focus styles for each element",
+        "Verify outline or box-shadow is present",
+        "Verify contrast ratio meets requirements"
+      ],
+      "expectedResults": {
+        "allElementsHaveFocusIndicator": true,
+        "contrastRatio": ">=3:1",
+        "indicatorType": ["outline", "boxShadow"]
+      }
+    },
+    {
+      "scenarioId": "FORM-001",
+      "name": "Form Accessibility",
+      "description": "Verify form elements have proper labels and structure", 
+      "testSteps": [
+        "Navigate to login page",
+        "Inspect form element structure",
+        "Check for labels, placeholders, ARIA attributes",
+        "Verify form submission feedback",
+        "Test error message accessibility"
+      ],
+      "expectedResults": {
+        "formHasLabels": false,
+        "formHasPlaceholders": true, 
+        "errorMessagesAccessible": true,
+        "submitButtonAccessible": true
+      }
+    },
+    {
+      "scenarioId": "ERR-001",
+      "name": "Error Message Accessibility",
+      "description": "Test accessibility of error messages for invalid login",
+      "testData": {
+        "username": "invalid_user",
+        "password": "wrong_password"
+      },
+      "testSteps": [
+        "Navigate to login page", 
+        "Enter invalid credentials",
+        "Submit form",
+        "Verify error message is announced",
+        "Check error message focus management"
+      ],
+      "expectedResults": {
+        "errorMessageVisible": true,
+        "errorMessageAccessible": true,
+        "ariaLiveRegion": true,
+        "focusManagement": "appropriate"
+      }
+    },
+    {
+      "scenarioId": "LANG-001",
+      "name": "Language and Structure",
+      "description": "Verify page language and semantic structure",
+      "testSteps": [
+        "Navigate to login page",
+        "Check html lang attribute", 
+        "Verify heading structure",
+        "Check landmark regions",
+        "Validate page title"
+      ],
+      "expectedResults": {
+        "hasLangAttribute": false,
+        "hasMainLandmark": false,
+        "hasH1": false,
+        "pageTitle": "Swag Labs"
+      }
+    }
+  ],
+  "testEnvironments": {
+    "desktop": {
+      "viewportWidth": 1280,
+      "viewportHeight": 720,
+      "userAgent": "desktop"
+    },
+    "tablet": {
+      "viewportWidth": 768, 
+      "viewportHeight": 1024,
+      "userAgent": "iPad"
+    },
+    "mobile": {
+      "viewportWidth": 375,
+      "viewportHeight": 667, 
+      "userAgent": "iPhone"
+    }
+  },
+  "assistiveTechnology": {
+    "screenReaders": {
+      "simulatedBehavior": {
+        "announcePageTitle": true,
+        "announceLandmarks": true,
+        "announceHeadings": true,
+        "announceFormLabels": true,
+        "announceErrorMessages": true
+      }
+    }
+  }
+}

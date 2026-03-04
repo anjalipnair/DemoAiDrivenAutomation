@@ -1,0 +1,80 @@
+{
+  "volumeTestData": {
+    "users": {
+      "small": {
+        "count": 100,
+        "description": "Small user base for initial testing"
+      },
+      "medium": {
+        "count": 1000,
+        "description": "Medium user base for load testing"
+      },
+      "large": {
+        "count": 10000,
+        "description": "Large user base for volume testing"
+      },
+      "enterprise": {
+        "count": 100000,
+        "description": "Enterprise scale user base"
+      }
+    },
+    "products": {
+      "catalog_small": {
+        "count": 100,
+        "categories": 10,
+        "description": "Small product catalog"
+      },
+      "catalog_medium": {
+        "count": 1000,
+        "categories": 50,
+        "description": "Medium product catalog"
+      },
+      "catalog_large": {
+        "count": 10000,
+        "categories": 200,
+        "description": "Large product catalog"
+      },
+      "catalog_enterprise": {
+        "count": 100000,
+        "categories": 1000,
+        "description": "Enterprise product catalog"
+      }
+    },
+    "orders": {
+      "daily": {
+        "count": 1000,
+        "timeframe": "24h",
+        "description": "Daily order volume"
+      },
+      "monthly": {
+        "count": 30000,
+        "timeframe": "30d",
+        "description": "Monthly order volume"
+      },
+      "yearly": {
+        "count": 365000,
+        "timeframe": "365d",
+        "description": "Yearly order volume"
+      }
+    }
+  },
+  "testDataGeneration": {
+    "userGeneration": {
+      "pattern": "user_{index}",
+      "emailPattern": "user{index}@example.com",
+      "passwordPattern": "password{index}",
+      "profileComplexity": "mixed"
+    },
+    "productGeneration": {
+      "namePattern": "Product {index}",
+      "descriptionLength": {"min": 50, "max": 200},
+      "priceRange": {"min": 9.99, "max": 199.99},
+      "categoryDistribution": "even"
+    },
+    "orderGeneration": {
+      "itemsPerOrder": {"min": 1, "max": 10},
+      "orderValueRange": {"min": 10.00, "max": 500.00},
+      "timeDistribution": "business_hours"
+    }
+  }
+}

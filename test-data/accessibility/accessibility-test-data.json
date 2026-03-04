@@ -1,0 +1,76 @@
+{
+  "wcagCompliance": {
+    "testUsers": [
+      {
+        "username": "standard_user",
+        "password": "secret_sauce",
+        "description": "Standard user for accessibility testing",
+        "expectedLoginSuccess": true
+      },
+      {
+        "username": "locked_out_user", 
+        "password": "secret_sauce",
+        "description": "Locked out user to test error message accessibility",
+        "expectedLoginSuccess": false,
+        "expectedErrorMessage": "Epic sadface: Sorry, this user has been locked out."
+      },
+      {
+        "username": "problem_user",
+        "password": "secret_sauce", 
+        "description": "Problem user for testing edge cases",
+        "expectedLoginSuccess": true
+      }
+    ],
+    "keyboardNavigation": {
+      "expectedTabOrder": [
+        {
+          "step": 1,
+          "elementId": "user-name",
+          "elementType": "input",
+          "inputType": "text",
+          "description": "Username input field"
+        },
+        {
+          "step": 2,
+          "elementId": "password",
+          "elementType": "input", 
+          "inputType": "password",
+          "description": "Password input field"
+        },
+        {
+          "step": 3,
+          "elementId": "login-button",
+          "elementType": "input",
+          "inputType": "submit",
+          "value": "Login",
+          "description": "Login submit button"
+        }
+      ]
+    },
+    "expectedSemanticStructure": {
+      "formElements": {
+        "expectedFormCount": 1,
+        "expectedInputCount": 3,
+        "expectedButtonCount": 1
+      },
+      "landmarks": {
+        "hasMain": false,
+        "hasHeader": false,
+        "hasFooter": false,
+        "hasNav": false
+      },
+      "headings": {
+        "hasH1": false,
+        "expectedHeadingStructure": []
+      }
+    },
+    "accessibilityThresholds": {
+      "maxCriticalViolations": 0,
+      "maxSeriousViolations": 0,
+      "maxModerateViolations": 5,
+      "maxMinorViolations": 10,
+      "minimumColorContrastRatio": 4.5,
+      "requiredFocusIndicators": true
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test tests/login-auth tests/login-validation --reporter=html",
+    "test:api": "playwright test tests/api --reporter=list",
+    "test:all": "playwright test tests/ --reporter=html",
+    "test:smoke": "playwright test --grep \"Health Check|Smoke|Login.*Valid Credentials\" --reporter=list",
+    "test:auth": "playwright test --grep \"Authentication|Login|Auth\" --reporter=list", 
+    "test:cart": "playwright test --grep \"Cart|Shopping\" --reporter=list",
+    "test:checkout": "playwright test --grep \"Checkout|Order\" --reporter=list",
+    "test:performance": "playwright test --grep \"Performance|Response Time|Load\" --reporter=list",
+    "test:integration": "playwright test --grep \"Integration|E2E|Complete.*workflow\" --reporter=list",
+    "test:regression": "playwright test --grep \"Regression|Core.*Journey\" --reporter=list",
+    "test:ci": "playwright test --reporter=github",
+    "test:coverage": "playwright test --coverage",
+    "test:debug": "playwright test --debug",
+    "test:headed": "playwright test --headed",
+    "report:open": "playwright show-report",
+    "report:api": "playwright show-report --dir=test-results-api",
+    "install:dependencies": "npm install && npx playwright install",
+    "setup:test-data": "node -e \"console.log('Test data validation:', require('./utils/testDataManager').testData.validate())\"",
+    "health:check": "npm run test:smoke && echo 'All systems operational'",
+    "clean:reports": "rm -rf test-results && rm -rf playwright-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}
