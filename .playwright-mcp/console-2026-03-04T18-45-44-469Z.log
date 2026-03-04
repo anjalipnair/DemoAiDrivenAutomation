@@ -1,0 +1,3 @@
+[    1862ms] SyntaxError: Identifier 'btn' has already been declared
+    at https://www.orangehrm.com/public/_resources/themes/orangehrm/dist/trial.js?v=20:1:1
+[   17433ms] [ERROR] Attestation check for Attribution Reporting on https://region1.google-analytics.com failed. @ https://www.orangehrm.com/:0

@@ -92,6 +92,20 @@ jobs:
           test-results/
         retention-days: 30
 
+    - name: Generate Dashboard Data
+      if: always()
+      run: |
+        node scripts/dashboard-processor.js
+        echo "Dashboard data generated successfully"
+
+    - name: Upload Dashboard
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: super-dashboard
+        path: dashboard/
+        retention-days: 30
+
   # Notification job
   notify:
     needs: [test, orangehrm-tests]

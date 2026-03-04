@@ -22,6 +22,10 @@
     "docker:test": "docker-compose run playwright-tests",
     "ci:install": "npm ci && npx playwright install --with-deps",
     "ci:test": "npm run test:ci && npm run report:generate",
+    "dashboard:generate": "node scripts/dashboard-processor.js",
+    "dashboard:open": "open dashboard/index.html || start dashboard/index.html || xdg-open dashboard/index.html",
+    "dashboard:serve": "npx http-server dashboard -p 3000 -o",
+    "dashboard:build": "npm run dashboard:generate && echo '✅ Super Dashboard ready at dashboard/index.html'",
     "dev": "echo 'Development server placeholder'"
   },
   "keywords": [],
@@ -31,7 +35,8 @@
   "devDependencies": {
     "@axe-core/playwright": "^4.11.1",
     "@playwright/test": "^1.58.2",
-    "@types/node": "^25.3.0"
+    "@types/node": "^25.3.0",
+    "http-server": "^14.1.1"
   },
   "dependencies": {
     "axios": "^1.13.6",
