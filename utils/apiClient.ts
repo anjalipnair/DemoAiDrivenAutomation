@@ -122,12 +122,12 @@ export class SauceDemoApiClient {
   }
   
   private loadApiConfig(): any {
-    const filePath = path.join(__dirname, '..', 'test-data', 'api-endpoints.json');
+    const filePath = path.join(__dirname, '..', 'test-data', 'api', 'api-endpoints.json');
     return JSON.parse(fs.readFileSync(filePath, 'utf-8'));
   }
   
   private loadTestScenarios(): any {
-    const filePath = path.join(__dirname, '..', 'test-data', 'api-test-scenarios.json');
+    const filePath = path.join(__dirname, '..', 'test-data', 'api', 'api-test-scenarios.json');
     return JSON.parse(fs.readFileSync(filePath, 'utf-8'));
   }
   
