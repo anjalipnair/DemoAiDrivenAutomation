@@ -116,7 +116,25 @@ export class TestDataManager {
       return this.dataCache.get(fileName);
     }
     
-    const filePath = path.join(__dirname, '..', 'test-data', `${fileName}.json`);
+    // Map file names to their correct subdirectories
+    const fileMapping: Record<string, string> = {
+      'users': 'functional/users.json',
+      'products': 'functional/products.json',
+      'checkout': 'functional/checkout.json',
+      'environments': 'functional/environments.json',
+      'system': 'functional/system.json',
+      'api-endpoints': 'api/api-endpoints.json',
+      'api-test-scenarios': 'api/api-test-scenarios.json',
+      'accessibility-config': 'accessibility/accessibility-config.json',
+      'accessibility-scenarios': 'accessibility/accessibility-scenarios.json',
+      'accessibility-test-data': 'accessibility/accessibility-test-data.json',
+      'wcag-criteria': 'accessibility/wcag-criteria.json',
+      'performance-benchmarks': 'performance/performance-benchmarks.json',
+      'performance-datasets': 'performance/performance-datasets.json'
+    };
+    
+    const relativePath = fileMapping[fileName] || `${fileName}.json`;
+    const filePath = path.join(__dirname, '..', 'test-data', relativePath);
     
     try {
       const fileContent = fs.readFileSync(filePath, 'utf-8');
